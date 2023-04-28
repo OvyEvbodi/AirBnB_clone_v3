@@ -95,7 +95,6 @@ class FileStorage:
         """
 
         if cls == None:
-            return len(FileStorage.__objects)
+            return len(self.all())
         elif cls in classes.values():
-            class_list = self.all(cls)
-            return len(class_list)
+            return len(self.all(cls))

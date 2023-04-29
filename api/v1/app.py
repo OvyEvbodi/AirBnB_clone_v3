@@ -20,13 +20,8 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app()
-    port_env = getenv('HBNB_API_PORT')
-    host_env = getenv('HBNB_API_HOST')
-
-
-    if not host_env:
-        host_env = '0.0.0.0'
-    if not port_env:
-        port_env = '5000'
+    port_env = getenv('HBNB_API_PORT', '5000')
+    host_env = getenv('HBNB_API_HOST', '0.0.0.0')
+    app.config['PRETTYPRINT'] = True
 
     app.run(host=host_env, port=port_env, threaded=True)

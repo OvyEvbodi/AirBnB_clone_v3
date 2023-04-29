@@ -1,13 +1,15 @@
 """Renders api data using Flask"""
 from flask import Flask
 from models import storage
+from api.v1.views import app_views
 from os import getenv
 
 
 def create_app():
     app = Flask(__name__)
 
-    app.register_blueprint('app_views')
+    app.register_blueprint(app_views)
+    return app
 
     @app.teardown_appcontext
     def shutdown(self):
@@ -17,9 +19,9 @@ def create_app():
 
 
 if __name__ == '__main__':
-    create_app()
-    port_env = getenv(HBNB_API_PORT)
-    host_env = getenv(HBNB_API_HOST)
+    app = create_app()
+    port_env = getenv('HBNB_API_PORT')
+    host_env = getenv('HBNB_API_HOST')
 
 
     if not host_env:

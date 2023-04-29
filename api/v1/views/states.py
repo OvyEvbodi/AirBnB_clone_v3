@@ -64,4 +64,5 @@ def update_state(state_id):
     name = request.get_json()['name']
     if name:
         state.name = name
+        state.save()
     return make_response(jsonify(state.to_dict()), 200)

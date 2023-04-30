@@ -16,7 +16,7 @@ if __name__ == '__main__':
     app = create_app()
     port_env = getenv('HBNB_API_PORT', '5000')
     host_env = getenv('HBNB_API_HOST', '0.0.0.0')
-    app.config['PRETTYPRINT'] = True
+    app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
     @app.teardown_appcontext
     def shutdown(self):

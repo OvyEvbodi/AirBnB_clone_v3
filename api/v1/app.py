@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Renders api data using Flask"""
 from flask import Flask, make_response, jsonify
 from models import storage

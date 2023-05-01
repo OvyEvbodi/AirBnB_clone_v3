@@ -12,7 +12,7 @@ from models.city import City
 
 
 @app_views.route('/cities/<city_id>/places', methods=['GET'],
-                 strict_slashes = False)
+                 strict_slashes=False)
 def get_places(city_id):
     """Retrieves all places linked to a city with the id passed"""
 
@@ -82,7 +82,7 @@ def update_place(place_id):
     if not request.is_json:
         abort(400, description='Not a json')
     data = request.get_json()
-    ignored = ['id','city_id', 'user_id', 'created_at', 'updated_at']
+    ignored = ['id', 'city_id', 'user_id', 'created_at', 'updated_at']
     for key in data.keys():
         if key not in ignored:
             setattr(place, key, data[key])

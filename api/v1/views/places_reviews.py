@@ -2,8 +2,6 @@
 
 """View for Review object that handles all default RESTFul API actions"""
 
-#!/usr/bin/python3
-"""View for review objects that handles all default RESTFul API actions"""
 
 from flask import jsonify, request, make_response, abort
 from models import storage
@@ -85,7 +83,7 @@ def update_review(review_id):
         abort(404)
     if 'text' not in data:
         abort(400, dscription='Missing text')
-    ignored = ['id','place_id', 'user_id', 'created_at', 'updated_at']
+    ignored = ['id', 'place_id', 'user_id', 'created_at', 'updated_at']
     for key in data.keys():
         if key not in ignored:
             setattr(review, key, data[key])

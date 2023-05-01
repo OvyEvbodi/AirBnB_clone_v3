@@ -57,8 +57,13 @@ def post_review(place_id):
     data = request.get_json()
     if not request.is_json:
         abort(400, description='Not a JSON')
-    if 'name' not in data:
-        abort(400, description='Missing name')
+    if 'user_id' not in data:
+        abort(400, description='Missing user_id')
+    user = storage.get(User, data['user_id'])
+    if user is None:
+        abort(404)
+    if 'text' not in data:
+        abort(400, dscription='Missing text')
     review = Review(**data)
     review.place_id = place_id
     review.save()
@@ -76,13 +81,6 @@ def update_review(review_id):
     if not request.is_json:
         abort(400, description='Not a json')
     data = request.get_json()
-    if 'user_id' not in data:
-        abort(400, description='Missing user_id')
-    user = storage.get(User, data['user_id'])
-    if user is None:
-        abort(404)
-    if 'text' not in data:
-        abort(400, dscription='Missing text')
     ignored = ['id', 'place_id', 'user_id', 'created_at', 'updated_at']
     for key in data.keys():
         if key not in ignored:

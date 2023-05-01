@@ -7,6 +7,7 @@ from flask import jsonify, request, make_response, abort
 from models import storage
 from models.review import Review
 from models.place import Place
+from models.user import User
 from api.v1.views import app_views
 
 

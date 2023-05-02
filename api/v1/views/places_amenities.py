@@ -20,8 +20,11 @@ def get_place_amenities(place_id):
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
-    amenities = place.amenities
-    return jsonify([amenity.to_dict() for amenity in amenities])
+
+    return jsonify([
+        amenity.to_dict() for amenity in storage.all(Amenity).values()
+        if amenity in place.amenities
+    ])
 
 
 @app_views.route('/places/<place_id>/amenities/<string:amenity_id>',

@@ -83,3 +83,4 @@ class Place(BaseModel, Base):
 
             if obj.id not in self.amenity_ids:
                 self.amenity_ids.append(obj.id)
+                setattr(self, "amenity_ids", self.amenity_ids)

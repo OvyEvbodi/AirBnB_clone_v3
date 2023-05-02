@@ -5,7 +5,7 @@
     """
 
 
-from flask import jsonify, request, make_response, abort
+from flask import jsonify, make_response, abort
 from models import storage
 from models.amenity import Amenity
 from models.place import Place
